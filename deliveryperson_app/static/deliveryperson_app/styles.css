@@ -1,0 +1,28 @@
+.b {
+    background-color: rgb(180, 243, 243);
+}
+
+
+@keyframes wait {
+    50% {
+        opacity: 0;
+    }
+}
+
+#orders-wait {
+    animation: infinite;
+    animation-name: wait;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+.row {
+    align-items: baseline;
+}
+
+.im-size {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}

@@ -1,0 +1,51 @@
+{% extends "client_app/layout.html" %}
+
+
+{% block title %} {{ restaurant.username }} {% endblock %}
+
+
+{% block body %}
+
+<div class="container mt-5">
+
+    <div class="row mb-4 text-center">
+        <img src="{{ restaurant.image }}" class="im-size2 rounded mx-auto d-block mb-3">
+        <h1>{{ restaurant.username }}</h1>
+        <p class="text-break mt-2 fs-4">{{ restaurant.des }}</p>
+    </div>
+
+    <div class="row row-cols-lg-2 row-cols-sm-1">
+
+        {% for i in food %}
+        <div class="col p-5 ">
+            <img src="{{ i.image }}" class="im-size mb-3 rounded mx-auto d-block">
+            <p class="fs-3">{{ i.food }}</p>
+            <p>{{ i.price | usd }}</p>
+            <p class="text-break mb-4">{{ i.des }}</p>
+            <input type="hidden" value="{{ i.id }}">
+            <input type="button" class="add-button btn btn-primary me-3" value="Add to cart">
+            <input type="number" class="number-input btn text-center" min="1" value="1">
+            <p></p>
+            {% csrf_token %}
+        </div>
+        
+        {% endfor %}
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

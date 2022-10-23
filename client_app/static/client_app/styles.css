@@ -1,0 +1,86 @@
+.a {
+    text-decoration: None;
+}
+
+.a:hover {
+    text-decoration: underline;
+}
+
+.cart {
+    height: 33px;
+    width: auto;
+}
+
+.im-index {
+    width: 900px;
+    height: 777px;
+    object-fit: cover;
+}
+
+.carousel-caption {
+    margin-bottom: 200px;
+}
+
+
+.im-size {
+    width:  150px;
+    height: 150px;
+    object-fit: contain;
+}
+
+.im-size2 {
+    width: auto;
+    height: 255px;
+}
+
+.a {
+    text-decoration: none;
+    color: black;
+}
+
+.a:hover {
+    text-decoration: underline;
+    color: black;
+}
+
+.update-number-input, .number-input {
+    width: 90px;
+}
+
+@keyframes hide {
+    0% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+.cart-item {
+    animation-name: hide;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+@keyframes wait {
+    50% {
+        opacity: 0;
+    }
+}
+
+#order-status-wait {
+    display: none;
+    animation: infinite;    
+    animation-name: wait;
+    animation-duration: 2s;
+    animation-fill-mode: forwards;
+    animation-play-state: paused;
+}
+
+.row {
+    align-items: baseline;
+}

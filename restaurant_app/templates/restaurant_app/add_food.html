@@ -1,0 +1,54 @@
+{% extends "restaurant_app/layout.html" %}
+
+{% block title %} Add Food {% endblock %}
+
+
+{% block body %}
+
+{% if message %}
+<h2 class="text-danger mt-3 text-center">{{ message }}</h2>
+{% endif %}
+
+<form action="{% url 'restaurant_app:add_food' %}" method="post" enctype="multipart/form-data" class="p-5">
+    {% csrf_token %}
+
+    <h2 class="mb-3">Add Food</h2>
+
+    <div class="mb-3">
+        <label for="inputfood" class="form-label">Food</label>
+        <input type="text" name="food" class="form-control" id="inputfood" value="{{ food }}">
+    </div>
+    
+    <div class="mb-3">
+        <label for="inputprice" class="form-label">Price</label>
+        <input type="text" name="price" class="form-control" id="inputprice" value="{{ price }}">
+    </div>
+    
+    <div class="mb-3">
+        <label for="inputdes" class="form-label">Description</label>
+        <textarea type="text" name="des" class="form-control" id="inputdes">{{ des }}</textarea>
+    </div>
+    
+    <div class="mb-3">
+        <label for="inputimage" class="form-label">Image url</label>
+        <input type="url" name="image" class="form-control" id="inputimage" value="{{ image }}">
+    </div>
+
+    <input class="btn btn-primary text-center" type="submit" value="Add">
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

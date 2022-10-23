@@ -1,0 +1,61 @@
+{% extends "deliveryperson_app/layout.html" %}
+
+{% block title %} Live order {% endblock %}
+
+
+{% block body %}
+
+
+{% if order %}
+
+<div class="container mt-3 text-center fs-4">
+
+    <div class="row">
+        <img src="{{ order.restaurant.image }}" class="im-size rounded mx-auto d-block">
+    </div>
+
+    <div class="row">
+        <p>{{ order.restaurant.username }}</p>
+    </div>
+
+    <div class="row">
+        <p class="text-break">{{ order.order }}</p>
+    </div>
+
+    <div class="row">
+        <p><span class="text-info">Restaurant Address:</span> {{ order.restaurant.address }}</p>
+    </div>
+
+    <div class="row">
+        <p><span class="text-info">User Address:</span> {{ order.user.address }}</p>
+    </div>
+
+    <div class="row">
+        <p>{{ order.sum_order | usd }}</p>
+    </div>
+
+    <div class="row">
+
+        <p class="text-info  mb-3">Call the client when you get to address to deliver the food.</p>
+
+        <p class="text-warning  fs-3 mb-2">Warning: only press this button if the food delivered to client.</p>
+
+        <form action="{% url 'deliveryperson_app:delivered' %}" method="post">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-success " value="Delivered">
+        </form>
+
+    </div>
+
+</div>
+{% else %}
+
+<h3 class="text-center text-info mt-5">No live order go to <a href="{% url 'deliveryperson_app:index' %}">All orders</a> to get order.</h3>
+
+{% endif %}
+
+
+
+
+
+{% endblock %}

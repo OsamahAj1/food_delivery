@@ -1,0 +1,55 @@
+{% extends "restaurant_app/layout.html" %}
+
+{% block title %} All Orders {% endblock %}
+
+{% block body %}
+
+{% if message %}
+<h2 class="text-success mt-3 text-center">{{ message }}</h2>
+{% endif %}
+
+<input type="hidden" id="res-id" value="{{ request.user.id }}">
+<p class="text-center fs-3 mb-4" id="orders-wait">Searching for orders</p>
+
+<div class="container mt-5 text-center" id="orders">
+
+    {% for i in orders %}
+    <div class="order-row row">
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto">
+            <p>{{ i.id }}</p>
+        </div>
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto">
+            <p class="text-break">Delivery Person: {{ i.deliveryperson.username }}</p>
+        </div>
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto fs-3">
+            <p class="text-break">{{ i.order }}</p>
+        </div>
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto">
+            <p>{{ i.sum_order | usd }}</p>
+        </div>
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto">
+            <button class="ready-btn btn btn-danger">Ready</button>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

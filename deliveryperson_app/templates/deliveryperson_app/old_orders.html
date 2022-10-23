@@ -1,0 +1,44 @@
+{% extends "deliveryperson_app/layout.html" %}
+
+{% block title %} Cart {% endblock %}
+
+
+{% block body %}
+
+
+<div class="container mt-5">
+
+    {% for i in old_orders %}
+
+    <div class="row mb-4">
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto">
+            <img src="{{ i.restaurant.image }}" class="im-size">
+        </div>
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto">
+            <p>{{ i.restaurant.username }}</p>
+        </div>
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto">
+            <p class="text-break">{{ i.order }}</p>
+        </div>
+
+        <div class="col col-lg-2 col-sm-auto col-xs-auto">
+            <p>{{ i.sum_order | usd }}</p>
+        </div>
+    </div>
+
+    {% empty %}
+    <h3 class="text-center text-info">No orders go to <a href="{% url 'client_app:home' %}">home page</a> to accept orders.</h3>
+
+    {% endfor %}
+
+</div>
+
+
+
+
+
+
+{% endblock %}

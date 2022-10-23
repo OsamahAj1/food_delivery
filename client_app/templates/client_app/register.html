@@ -1,0 +1,53 @@
+{% extends "client_app/layout.html" %}
+
+{% block body %}
+
+    <h2 class="ms-4">Register</h2>
+
+    {% if message %}
+        <h2 class="text-danger mb-3 text-center">{{ message }}</h2>
+    {% endif %}
+
+    <form action="{% url 'client_app:register' %}" method="post" class="p-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="inputusername" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" id="inputusername">
+        </div>
+
+        <div class="mb-3">
+            <label for="inputemail" class="form-label">Email Address</label>
+            <input type="email" name="email" class="form-control" id="inputemail">
+        </div>
+
+        <div class="mb-3">
+            <label for="inputnumber" class="form-label">Phone Number</label>
+            <input type="text" name="number" class="form-control" id="inputnumber">
+        </div>
+
+        <div class="mb-3">
+            <label for="inputaddress" class="form-label">Address</label>
+            <textarea type="text" name="address" class="form-control" id="inputaddress"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="inputimage" class="form-label">Image url <span class="text-info">optionally</span></label>
+            <input type="url" name="image" class="form-control" id="inputimage">
+        </div>
+
+        <div class="mb-3">
+            <label for="inputpassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputpassword" name="password">
+        </div>
+
+        <div class="mb-3">
+            <label for="inputrepassword" class="form-label">Confirm Password</label>
+            <input type="password" class="form-control" id="inputrepassword" name="confirmation">
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="Register">
+    </form>
+
+    <div class="p-4">Already have an account? <a href="{% url 'client_app:login' %}">Log In here.</a></div>
+
+{% endblock %}

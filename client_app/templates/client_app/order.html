@@ -1,0 +1,96 @@
+{% extends "client_app/layout.html" %}
+
+{% block title %} Live order {% endblock %}
+
+
+{% block body %}
+
+
+{% if order %}
+<div class="container mt-5" id="order">
+
+    <div class="row"><p class="text-center fs-3" id="order-status-wait">Please wait finding delivery person</p></div>
+
+    <div class="row" id="delivery-info">
+
+        <div class="col col-lg-3 col-sm-auto col-xs-auto">
+            <img src="{{ order.deliveryperson.image }}" id="delivery-image" class="im-size">
+        </div>
+
+        <div class="col col-lg-3 col-sm-auto col-xs-auto" >
+            <p id="delivery-name">{{ order.deliveryperson.username }}</p>
+        </div>
+
+        <div class="col col-lg-3 col-sm-auto col-xs-auto">
+            <p id="delivery-car">{{ order.deliveryperson.car }}</p>
+        </div>
+
+        <div class="col col-lg-3 col-sm-auto col-xs-auto">
+            <p id="delivery-number">{{ order.deliveryperson.number }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+<p class="text-danger"></p>
+
+
+
+<h3 class="text-center text-warning mt-5">Warning: You can't cancel order if order got accepted.</h3>
+
+<input type="hidden" value="{{ order.id }}" id="order_id">
+
+{% if order.is_sent is False %}
+<input type="hidden" value="{{ order.user.address }}" id="user-adr">
+<input type="hidden" value="{{ order.restaurant.address }}" id="res-adr">
+<input type="hidden" value="{{ order.restaurant.id }}" id="res-id">
+<div class="text-center mt-4"><button class="btn btn-success" id="send-btn">Send Order</button></div>
+
+<form id="cancel-order-form" action="{% url 'client_app:cancel_order' %}" class="text-center mt-4" method="post">
+    {% csrf_token %}
+    <input type="submit" class="btn btn-danger" value="Cancel order">
+    {% if message %}
+    <p class="text-danger">{{ message }}</p>
+    {% endif %}
+</form>
+
+
+{% endif %}
+
+<div class="container mt-5">
+    <div class="row">
+        <p class="text-info text-center fs-3">You gonna get call from delivery person when he get to your address.</p>
+    </div>
+
+    <div class="cart-item row mb-4">
+
+        <div class="col col-lg-3 col-sm-auto col-xs-auto">
+            <img src="{{ order.restaurant.image }}" class="im-size" id="res-img">
+        </div>
+
+        <div class="col col-lg-3 col-sm-auto col-xs-auto">
+            <p id="res-name">{{ order.restaurant.username }}</p>
+        </div>
+
+        <div class="col col-lg-3 col-sm-auto col-xs-auto">
+            <p class="mt-5 text-break" id="order-order">{{ order.order }}</p>
+        </div>
+
+        <div class="col col-lg-3 col-sm-auto col-xs-auto">
+            <p id="sum-order">{{ order.sum_order | usd }}</p>
+        </div>
+    </div>
+
+</div>
+{% else %}
+
+<h3 class="text-center text-info mt-5">No live order go to <a href="{% url 'client_app:home' %}">home page</a> to order.</h3>
+
+{% endif %}
+
+
+
+
+
+{% endblock %}

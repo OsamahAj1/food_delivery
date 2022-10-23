@@ -1,0 +1,25 @@
+{% extends "client_app/layout.html" %}
+
+{% block body %}
+
+    <h2 class="ms-4">Login</h2>
+
+    {% if message %}
+        <h2 class="text-danger mb-3 text-center">{{ message }}</h2>
+    {% endif %}
+    <form action="{% url 'client_app:login' %}" method="post" class="p-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="inputusername" class="form-label">Username</label>
+            <input type="text" name="username" class="form-control" id="inputusername">
+        </div>
+        <div class="mb-3">
+            <label for="inputpassword" class="form-label">Password</label>
+            <input type="password" class="form-control" id="inputpassword" name="password">
+        </div>
+        <input class="btn btn-primary" type="submit" value="Login">
+    </form>
+
+    <div class="p-4">Don't have an account? <a href="{% url 'client_app:register' %}">Register here.</a></div>
+
+{% endblock %}
